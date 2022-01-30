@@ -1,0 +1,53 @@
+﻿@model Dish 
+<form method="post">
+    <div class="border-bottom p-3 mt-4">
+        <div class="row pb-2">
+            <h1>Create Dish</h1>
+        </div>
+        <hr/>
+        <table>
+            <tr>
+                <td class="pt-4 pr-4"><label asp-for="Name"></label>&nbsp;&nbsp;</td>
+                <td class="pt-4">
+                    <input asp-for="Name"/>
+                </td>
+                <td>
+                    <span asp-validation-for="Name" class="text-danger mt-2 ml-4"></span>
+                </td>
+            </tr><tr>
+                <td class="pt-4 pr-4">
+                    <label asp-for="Categories">Category</label>
+                    &nbsp;&nbsp;
+                </td>
+                <td class="pt-4">
+                    <select asp-for="Categories">
+                        <option value="">Select the categories</option>
+                        @foreach (var category in TempData["categories"] as IEnumerable<Category>)
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="pt-4 pr-4">
+                    <label asp-for="Ingredients">Ingredients&nbsp;&nbsp;</label>
+                    <br />Ctrl+Click for multiple
+                </td>
+                <td class="pt-4">
+                    <select multiple asp-for="Ingredients">
+                        @foreach (var ingredient in TempData["ingredients"] as IEnumerable<Ingredient>)
+                        {
+                            <option value="@ingredient.Id">@ingredient.Name</option>
+                        }
+                    </select>
+                </td>
+            </tr>
+        </table>
+        
+                    <div asp-validation-for="Ingredients" class="text-danger mt-2 ml-4"></div>
+                    <div asp-validation-for="Categories" class="text-danger mt-2 ml-4"></div>
+        <button type="submit" class="mt-5 btn-primary btn">Save new dish</button>
+    </div>
+</form>
+

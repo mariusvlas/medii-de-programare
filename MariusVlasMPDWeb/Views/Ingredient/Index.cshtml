@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Ingredient>
+<h1>Ingredients</h1>
+
+<a asp-controller="Ingredient" asp-action="Create">
+<button class="btn-primary btn-primary">
+        New ingredient
+</button>
+</a>
+<br/>
+<br/>
+<table 
+class="table table-bordered table-striped" 
+style="width: 100%">
+<thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+</thead>
+<tbody>
+    @foreach(var obj in Model)
+        {
+            <tr>
+                <td width="100%">
+                    @obj.Name
+                </td>
+                <td>
+                    <a asp-controller="Ingredient" 
+                    asp-action="Edit"
+                    asp-route-id="@obj.Id">
+                    <button class="btn btn-primary">
+                            Edit
+                    </button>
+                    </a>
+                </td>
+                <td>
+                    <a asp-controller="Ingredient" 
+                    asp-action="Delete"
+                    asp-route-id="@obj.Id">
+                    <button class="btn btn-danger">
+                            Delete
+                    </button>
+                    </a>
+                </td>
+            </tr>
+        }
+</tbody>
+</table>
